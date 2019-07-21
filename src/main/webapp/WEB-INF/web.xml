@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 以下是原始 -->
+<!--<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+</web-app>
+-->
+
+<!-- Error:Cannot change version of project facet Dynamic Web Module to 2.3 的解决方案-->
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+          http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
+    version="3.1">
+    <!-- <display-name>Servlet 3.1 Web Application</display-name> -->
+    
+    <display-name>HelloWorld</display-name>
+  <welcome-file-list>
+    <!-- 追加自己的首页 Start -->
+    <welcome-file>index.html</welcome-file>
+    <!-- 追加自己的首页 End -->
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <!-- 项目启动404,但是tomcat自带的项目没问题 -->
+     <welcome-file>helloworld.jsp</welcome-file>
+  </welcome-file-list>
+  
+    <!-- 2019/07/15 第一个Fileter实例-->
+  <filter>
+  	<filter-name>HelloFilter</filter-name>
+  	<!-- 指定到具体哪一个类 -->
+  	<filter-class>com.dream.test.filter.HelloFilter</filter-class>
+  	<!-- 初始化时的参数 -->
+  	<init-param>
+	    <param-name>Site</param-name>
+	    <param-value>我的第一个Filter</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>HelloFilter</filter-name>
+  	<url-pattern>/test2/*</url-pattern>
+  </filter-mapping>
+  
+  <servlet>
+  	<servlet-name>DisplayHeader</servlet-name>
+  	<servlet-class>com.dream.test.servlet</servlet-class>
+  </servlet>
+  	
+  <servlet-mapping>
+  	<servlet-name>DisplayHeader</servlet-name>
+  	<!-- 访问的网址 -->
+  	<url-pattern>/HelloMaven/test2/DisplayHeader</url-pattern>
+  </servlet-mapping>
+  
+  <!-- HelloServlet Start-->
+  <servlet>
+  	<!-- 类名 -->
+  	<servlet-name>HelloServlet</servlet-name>
+  	<!-- Servlet类所在包的名 -->
+  	<!-- <servlet-class>com.dream.test</servlet-class> 2019/06/29 包名变更-->
+  	<!-- 只具体到哪一个包 -->
+  	<servlet-class>com.dream.test.servlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>HelloServlet</servlet-name>
+  	<!-- 访问的网址 -->
+  	<url-pattern>/HelloMaven/test1/HelloServlet</url-pattern>
+  </servlet-mapping>
+  <!-- HeloServlet End -->
+  
+  <!-- UploadFile Start-->
+  <servlet>
+  	<!-- 类名 -->
+  	<servlet-name>UploadFileServlet</servlet-name>
+  	<!-- Servlet类所在包的名 -->
+  	<!-- 只具体到哪一个包 -->
+  	<servlet-class>com.dream.test.servlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>UploadFileServlet</servlet-name>
+  	<!-- 访问的网址 -->
+  	<url-pattern>/HelloMaven/UploadFileServlet</url-pattern>
+  </servlet-mapping>
+  <!-- UploadFile End -->
+  
+  <!-- 设置session的有效时间 单位是分钟-->
+  <session-config>
+  	<session-timeout>3</session-timeout>
+  </session-config>
+ 
+ 
+</web-app>
